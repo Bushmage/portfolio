@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Google Maps on the Web: User Guide | Kyle Bush</title>
+<meta name="description" content="A task-based user guide to Google Maps in a desktop web browser, with annotated screenshots. A technical writing sample by Kyle Bush.">
+<meta name="author" content="Kyle Bush">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://kylebushwriting.com/google-maps-guide/">
+<meta name="theme-color" content="#2b7de9">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Google Maps on the Web: User Guide">
+<meta property="og:description" content="A task-based user guide to Google Maps in a desktop web browser, with annotated screenshots. A technical writing sample by Kyle Bush.">
+<meta property="og:url" content="https://kylebushwriting.com/google-maps-guide/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232b7de9'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+:root{
+  --bg:#f2f8ff; --surface:#ffffff; --surface-2:#eaf3ff;
+  --navy:#0e2a52; --ink:#1a3358; --muted:#58698a; --line:#0e2a521c;
+  --blue:#2b7de9; --blue-soft:#e2efff;
+  --font:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --shadow:0 18px 48px #1a4a8a14;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#0b1324; --surface:#121c31; --surface-2:#16233d;
+  --navy:#eef3ff; --ink:#dbe4f5; --muted:#9aa8c0; --line:#ffffff1c;
+  --blue:#5b93ff; --blue-soft:#1b2c4f; --shadow:0 18px 48px #00000059; color-scheme:dark}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 16.5px/1.7 var(--font);margin:0}
+a{color:var(--blue)}
+a:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:4px}
+.wrap{max-width:820px;margin:0 auto;padding:0 16px}
+.top{padding:18px 0;border-bottom:1px solid var(--line)}
+.top a{font-weight:600;text-decoration:none}
+header.doc{padding:44px 0 8px}
+.pill{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);background:var(--blue-soft);border:1px solid var(--line);padding:6px 12px;border-radius:999px}
+h1{color:var(--navy);font-size:clamp(2rem,5vw,3rem);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin:16px 0 10px}
+.by{color:var(--muted);margin:0 0 8px}
+article{background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:8px 28px 36px;margin:20px 0 48px}
+h2,h3{color:var(--navy);line-height:1.2;letter-spacing:-.02em}
+h2{font-size:1.65rem;margin:2.2em 0 .5em;padding-top:.4em;border-top:1px solid var(--line)}
+article>h2:first-child{border-top:0;margin-top:1.2em}
+h3{font-size:1.2rem;margin:1.8em 0 .4em}
+li{margin:.3em 0}
+code{background:var(--surface-2);padding:1px 6px;border-radius:6px;font-size:.92em}
+figure{margin:1.6em 0}
+figure img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow)}
+figcaption{color:var(--muted);font-size:.88rem;line-height:1.5;margin-top:.6em}
+.tw{overflow-x:auto;margin:1.2em 0}
+table{border-collapse:collapse;width:100%;font-size:.95rem}
+th,td{text-align:left;vertical-align:top;padding:9px 12px;border:1px solid var(--line)}
+th{background:var(--surface-2);color:var(--navy)}
+footer{color:var(--muted);font-size:.88rem;padding-bottom:40px}
+@media (max-width:560px){article{padding:4px 18px 28px;border-radius:14px}}
+</style>
+</head>
+<body>
+<div class="top"><div class="wrap"><a href="https://kylebushwriting.com/#portfolio">&larr; Kyle Bush, Technical Writer</a></div></div>
+<main class="wrap">
+<header class="doc">
+<span class="pill">Technical writing sample &middot; End-user documentation</span>
+<h1>Google Maps on the Web: User Guide</h1>
+<p class="by">By Kyle Bush &middot; October 2026</p>
+</header>
+<article>
+<h2 id="about-this-guide">About this guide</h2>
+<p>This guide shows first-time and casual users how to use Google Maps in a computer web browser to find places, get directions, change the map view, measure distances, save and share places, and manage their history.</p>
+<p>It covers the website at google.com/maps. The phone app works differently: turn-by-turn navigation, Timeline, and starting location sharing happen on your phone, and the web version points you there when it matters.</p>
+<p>You need a current web browser and an internet connection. You need a Google account only to save places, make lists, and see your Maps history.</p>
+<p><strong>How to read the steps.</strong></p>
+<ul>
+<li>Bold text is a label you see on screen, such as <strong>Directions</strong>.</li>
+<li>"Click" means press the left mouse button once. "Right-click" means press the right button.</li>
+<li>Google changes the Maps layout often and tests changes with different people, so your screen may differ slightly. The figures were captured in October 2026 in a desktop browser.</li>
+<li>Each figure has a short note. Profile pictures are hidden in every figure.</li>
+</ul>
+<h2 id="get-started">Get started</h2>
+<p>To start, open Google Maps in your browser and, if you want to save places, sign in with your Google account.</p>
+<ol>
+<li>Open your browser and go to google.com/maps.</li>
+<li>To sign in, use your Google account from the top-right corner of the page. You can use Maps without signing in.</li>
+<li>To center the map on where you are, click the location button at the bottom right. Your browser asks for permission to share your location. Allow it if you want Maps to use it.</li>
+</ol>
+<figure><img src="images/01-main-screen.png" alt="The Google Maps main screen, showing the search box, left-hand menu, Layers button, and zoom controls" width="800" height="500" loading="lazy"><figcaption>Figure 1. The Google Maps main screen. Note: the Ask Maps anytime hint may appear beside the Ask Maps button. Map data ©2026 Google.</figcaption></figure>
+
+<h3 id="tour-of-the-main-screen">Tour of the main screen</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Where</th>
+<th>Name</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Top left</td>
+<td><strong>Menu</strong> (three lines)</td>
+<td>Opens the menu, which includes your Maps history</td>
+</tr>
+<tr>
+<td>Top left</td>
+<td>Search box</td>
+<td>Finds places, addresses, and types of place. Press Enter or click the Search icon</td>
+</tr>
+<tr>
+<td>Next to the search box</td>
+<td><strong>Directions</strong> button</td>
+<td>Opens the directions panel</td>
+</tr>
+<tr>
+<td>Left side</td>
+<td><strong>Ask Maps</strong></td>
+<td>Lets you describe what you want to find in everyday language, with help from Gemini. This guide does not cover it</td>
+</tr>
+<tr>
+<td>Left side</td>
+<td><strong>Saved</strong></td>
+<td>Your saved places and lists (sign-in required)</td>
+</tr>
+<tr>
+<td>Left side</td>
+<td><strong>Recents</strong></td>
+<td>Places you have looked at recently</td>
+</tr>
+<tr>
+<td>Left side</td>
+<td><strong>Get app</strong></td>
+<td>Information about the Google Maps phone app</td>
+</tr>
+<tr>
+<td>Top</td>
+<td>Category buttons</td>
+<td>One-click searches such as <strong>Restaurants</strong>, <strong>Hotels</strong>, and <strong>Things to do</strong></td>
+</tr>
+<tr>
+<td>Bottom left</td>
+<td><strong>Layers</strong></td>
+<td>Changes the map type and the details shown</td>
+</tr>
+<tr>
+<td>Bottom right</td>
+<td>Location, <strong>+</strong>, and <strong>-</strong> buttons</td>
+<td>Center the map on you, zoom in, and zoom out</td>
+</tr>
+<tr>
+<td>Bottom right</td>
+<td>Pegman (yellow figure)</td>
+<td>Shows where Street View is available</td>
+</tr>
+</tbody>
+</table></div>
+<p>Drag the map with your mouse to move around it. Scroll the mouse wheel, or use the <strong>+</strong> and <strong>-</strong> buttons, to zoom.</p>
+<h2 id="find-a-place">Find a place</h2>
+<p>To find a place, type its name or address in the search box and open a result to see its place card.</p>
+<ol>
+<li>Click the search box and type an address, a place name, or a type of place such as <code>restaurants</code>.</li>
+<li>Press <strong>Enter</strong> or click the <strong>Search</strong> icon.</li>
+<li>Click a result in the list, or click a pin on the map. Square pins are ads.</li>
+<li>Read the place card on the left. For most places it shows the address, hours, phone number, website, and ratings.</li>
+</ol>
+<figure><img src="images/02-place-card.png" alt="A place card for Millennium Park showing its photo, rating, tabs, and the Directions, Save, Nearby, Send to phone, and Share buttons" width="800" height="500" loading="lazy"><figcaption>Figure 2. A place card. The tabs under the name change by place. Map data ©2026 Google.</figcaption></figure>
+
+<h3 id="the-place-card-buttons">The place card buttons</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Button</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Directions</strong></td>
+<td>Starts directions to this place</td>
+</tr>
+<tr>
+<td><strong>Save</strong></td>
+<td>Adds the place to one of your lists</td>
+</tr>
+<tr>
+<td><strong>Nearby</strong></td>
+<td>Searches for other places near this one</td>
+</tr>
+<tr>
+<td><strong>Send to phone</strong></td>
+<td>Sends the place to your phone</td>
+</tr>
+<tr>
+<td><strong>Share</strong></td>
+<td>Opens the Share box with a link you can copy</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="more-ways-to-search">More ways to search</h3>
+<ul>
+<li><strong>A category:</strong> type <code>restaurants</code> or <code>pharmacy</code> to see matches in the area on the map.</li>
+<li><strong>Coordinates:</strong> type latitude and longitude, for example <code>41.40338, 2.17403</code>.</li>
+<li><strong>A narrower search:</strong> add a city or postcode, such as <code>groceries in Portsmouth, Hampshire</code>.</li>
+<li><strong>A bigger map:</strong> click the small arrow on the edge of the left panel to hide the panel and see the full map.</li>
+</ul>
+<h2 id="get-directions">Get directions</h2>
+<p>To get directions, click <strong>Directions</strong>, enter a start and a destination, choose a travel mode, and click the route you want.</p>
+<ol>
+<li>Click <strong>Directions</strong> on a place card, or click the <strong>Directions</strong> button next to the search box.</li>
+<li>Enter your starting point and destination. You can type an address or place name, or click a point on the map. The swap arrows between the two boxes reverse the trip.</li>
+<li>Click a travel mode at the top of the panel: <strong>Best</strong>, <strong>Driving</strong>, <strong>Transit</strong>, <strong>Walking</strong>, <strong>Cycle</strong>, or <strong>Flights</strong>. Each shows its travel time, and a mode is greyed out when it is not available for the trip.</li>
+<li>Compare the routes. The best route is highlighted on the map and the others appear in a lighter color. Click a route in the list or on the map to select it.</li>
+</ol>
+<figure><img src="images/03-directions.png" alt="The directions panel for a trip from Millennium Park to Navy Pier, with travel modes at the top and three route choices below" width="800" height="500" loading="lazy"><figcaption>Figure 3. The directions panel. Note: the routes, times, and distances change with traffic and the time of day. The Send directions button names the type of phone linked to your Google account. Map data ©2026 Google.</figcaption></figure>
+
+<h3 id="avoid-highways-tolls-or-ferries">Avoid highways, tolls, or ferries</h3>
+<ol>
+<li>After you get directions, click <strong>Options</strong>.</li>
+<li>Under <strong>Avoid</strong>, check <strong>Highways</strong>, <strong>Tolls</strong>, or <strong>Ferries</strong>.</li>
+<li>Under <strong>Distance units</strong>, choose <strong>Automatic</strong>, <strong>miles</strong>, or <strong>km</strong>.</li>
+<li>Click <strong>Close</strong> to return to the routes.</li>
+</ol>
+<figure><img src="images/04-route-options.png" alt="The Route options panel with Avoid checkboxes for Highways, Tolls, and Ferries, and Distance units choices" width="800" height="500" loading="lazy"><figcaption>Figure 4. The Route options panel. Map data ©2026 Google.</figcaption></figure>
+
+<h3 id="set-a-time-add-stops-and-see-the-steps">Set a time, add stops, and see the steps</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>To do this</th>
+<th>Click</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Leave or arrive at a set time</td>
+<td><strong>Leave now</strong>, then <strong>Depart at</strong> or <strong>Arrive by</strong>, and set the date and time. This works only for trips with one destination</td>
+</tr>
+<tr>
+<td>Add a stop</td>
+<td><strong>Add destination</strong> below your destinations, then choose another place. You can have up to 9 stops, including the final one. Stops are not available for <strong>Transit</strong> or <strong>Flights</strong></td>
+</tr>
+<tr>
+<td>Reorder stops</td>
+<td>Drag a destination to a new position</td>
+</tr>
+<tr>
+<td>See step-by-step directions</td>
+<td><strong>Details</strong> under the route, then <strong>Expand</strong> for more detail</td>
+</tr>
+<tr>
+<td>Move the trip to your phone</td>
+<td><strong>Send directions to</strong> your phone, then choose a device or email</td>
+</tr>
+<tr>
+<td>Copy a link to the route</td>
+<td><strong>Copy link</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="change-the-map">Change the map</h2>
+<p>The button in the bottom-left corner of the map controls the map layers. Use it to switch to satellite imagery, show traffic or transit lines, or open Street View.</p>
+<h3 id="switch-between-the-default-and-satellite-views">Switch between the default and satellite views</h3>
+<ol>
+<li>Find the layers button in the bottom-left corner. It shows a small thumbnail of the view you would switch to.</li>
+<li>Click the button to toggle between the default map and <strong>Satellite</strong>.</li>
+<li>Hover over the button to open the layers menu, shown in Figure 5.</li>
+</ol>
+<figure><img src="images/05-layers-menu.png" alt="The layers menu above the layers button, listing Terrain, Traffic, Transit, Biking, and More, with the satellite view turned on" width="800" height="500" loading="lazy"><figcaption>Figure 5. The layers menu. Note: the menu opens when you hover over the layers button, not when you click it. Map data ©2026 Google.</figcaption></figure>
+
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>What it shows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Terrain</strong></td>
+<td>Elevation and landforms, shown as shaded relief and contour lines</td>
+</tr>
+<tr>
+<td><strong>Traffic</strong></td>
+<td>Current traffic conditions on roads, in green, orange, and red</td>
+</tr>
+<tr>
+<td><strong>Transit</strong></td>
+<td>Bus, train, and subway lines</td>
+</tr>
+<tr>
+<td><strong>Biking</strong></td>
+<td>Bike lanes and bike-friendly routes</td>
+</tr>
+<tr>
+<td><strong>More</strong></td>
+<td>The full <strong>Map details</strong> panel</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="open-the-map-details-panel">Open the Map details panel</h3>
+<ol>
+<li>Hover over the layers button, then click <strong>More</strong>.</li>
+<li>Under <strong>Map details</strong>, click the layers you want: <strong>Transit</strong>, <strong>Traffic</strong>, <strong>Biking</strong>, <strong>Terrain</strong>, <strong>Street View</strong>, <strong>Wildfires</strong>, or <strong>Air Quality</strong>.</li>
+<li>Under <strong>Map type</strong>, choose <strong>Default</strong> or <strong>Satellite</strong>.</li>
+<li>Check or clear <strong>Globe view</strong> and <strong>Labels</strong> as needed.</li>
+<li>Click <strong>X</strong> to close the panel.</li>
+</ol>
+<figure><img src="images/06-map-details.png" alt="The Map details panel with layer buttons, Map tools, Map type choices, and the Globe view and Labels checkboxes" width="800" height="500" loading="lazy"><figcaption>Figure 6. The Map details panel. Note: a layer may be unavailable in some areas, or at some zoom levels, and an unavailable layer does not appear on the map. <strong>Map tools</strong> holds <strong>Travel time</strong> and <strong>Measure</strong>, which are covered in the next section. Map data ©2026 Google.</figcaption></figure>
+
+<h3 id="look-around-with-street-view">Look around with Street View</h3>
+<p>Street View shows 360-degree photos taken along roads and paths. To use it:</p>
+<ol>
+<li>Open the <strong>Map details</strong> panel and click <strong>Street View</strong>. Blue lines and dots appear wherever imagery exists, as shown in Figure 7. You can also find the Pegman, the small yellow figure, in the bottom-right corner.</li>
+<li>Drag the Pegman onto a blue line, or click a blue line on the map.</li>
+<li>Click the arrows on the road, or click a spot in the image, to move.</li>
+<li>Drag the image to look around. The compass in the bottom-right corner shows which way you are facing.</li>
+<li>Click <strong>Back</strong> at the top left to return to the map.</li>
+</ol>
+<figure><img src="images/07-street-view-coverage.png" alt="The map with Street View coverage turned on, showing blue lines along roads and a legend for Street View, Photo Path, and Photo Sphere" width="800" height="500" loading="lazy"><figcaption>Figure 7. Street View coverage. Note: this figure shows only the coverage lines. The legend explains the three types of imagery: Street View, Photo Path, and Photo Sphere. Map data ©2026 Google.</figcaption></figure>
+
+<p>To see how a place looked in the past, click <strong>See more dates</strong> in the Street View image and choose an earlier date, if one is listed. You can also click a place photo that has the Street View icon on it.</p>
+<h2 id="right-click-and-measure-tools">Right-click and measure tools</h2>
+<p>Right-clicking anywhere on the map opens a menu of shortcuts for that exact spot. It is the quickest way to start directions from a point that has no address, look up coordinates, or measure a distance.</p>
+<ol>
+<li>Right-click a spot on the map. A menu opens at that point, as shown in Figure 8.</li>
+<li>Click the option you want.</li>
+</ol>
+<figure><img src="images/08-right-click-menu.png" alt="The right-click menu on the map, with the coordinates at the top and options such as Directions from here and Measure distance" width="800" height="500" loading="lazy"><figcaption>Figure 8. The right-click menu. Note: the coordinates at the top are for the spot you clicked. The menu can change as Google updates Maps. Map data ©2026 Google.</figcaption></figure>
+
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Menu option</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Coordinates</td>
+<td>Shows the latitude and longitude of the spot</td>
+</tr>
+<tr>
+<td><strong>Share this location</strong></td>
+<td>Opens the share dialog for the spot</td>
+</tr>
+<tr>
+<td><strong>Directions from here</strong></td>
+<td>Starts a route at the spot</td>
+</tr>
+<tr>
+<td><strong>Directions to here</strong></td>
+<td>Ends a route at the spot</td>
+</tr>
+<tr>
+<td><strong>What's here?</strong></td>
+<td>Opens a card with details about the spot</td>
+</tr>
+<tr>
+<td><strong>Search nearby</strong></td>
+<td>Searches for places near the spot</td>
+</tr>
+<tr>
+<td><strong>Print</strong></td>
+<td>Opens the print options</td>
+</tr>
+<tr>
+<td><strong>Add a missing place</strong></td>
+<td>Lets you suggest a place that is not on the map</td>
+</tr>
+<tr>
+<td><strong>Add your business</strong></td>
+<td>Starts the process to list a business</td>
+</tr>
+<tr>
+<td><strong>Report a data problem</strong></td>
+<td>Lets you report an error on the map</td>
+</tr>
+<tr>
+<td><strong>Measure distance</strong></td>
+<td>Starts the measuring tool</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="measure-a-distance">Measure a distance</h3>
+<ol>
+<li>Right-click the starting point and click <strong>Measure distance</strong>. A small card appears at the bottom of the map.</li>
+<li>Click the map to add each point along your path. Figure 9 shows a path in progress.</li>
+<li>Read the <strong>Total distance</strong> on the card. It updates each time you add a point.</li>
+<li>To move a point, drag it. To remove a point, click it.</li>
+<li>Click <strong>X</strong> on the card to close the tool and clear the path.</li>
+</ol>
+<figure><img src="images/09-measure-distance.png" alt="The map with a measured path drawn across it and a card at the bottom showing the total distance" width="800" height="500" loading="lazy"><figcaption>Figure 9. The measure tool. Note: the card shows the total distance in both feet and meters. A small thumbnail that appeared on the map while measuring has been blurred. Map data ©2026 Google.</figcaption></figure>
+
+<p>You can also open the tool from the <strong>Map details</strong> panel: click <strong>More</strong> on the layers menu, then click <strong>Measure</strong> under <strong>Map tools</strong>. A map with a measured distance cannot be shared, so take a screenshot instead if you need to send it.</p>
+<h2 id="save-places-and-lists">Save places and lists</h2>
+<p>Lists keep the places you want to find again, such as restaurants to try or stops on a trip. You must be signed in to your Google account to save places. This section has no screenshot because the <strong>Saved</strong> screen shows your personal places.</p>
+<h3 id="create-a-list">Create a list</h3>
+<ol>
+<li>Click <strong>Saved</strong> in the left rail, or click <strong>Menu</strong> and then <strong>Saved</strong>.</li>
+<li>Click <strong>New list</strong>.</li>
+<li>Enter a name. You can also choose an icon and add a description.</li>
+<li>Click <strong>Create</strong>.</li>
+</ol>
+<h3 id="save-a-place-to-a-list">Save a place to a list</h3>
+<ol>
+<li>Search for a place and open its card.</li>
+<li>Click <strong>Save</strong>.</li>
+<li>Choose a list, or click <strong>New list</strong> to make one.</li>
+<li>Click <strong>Create</strong> if you made a new list.</li>
+</ol>
+<p>To remove a place, open its card, click <strong>Saved</strong>, and clear the check box beside the list.</p>
+<h3 id="share-a-list">Share a list</h3>
+<ol>
+<li>Open the list from <strong>Saved</strong>.</li>
+<li>Click <strong>More</strong>, then choose <strong>Send a link to view</strong> to share a read-only link. To control who can see the list, choose <strong>Sharing options</strong> and set the list to <strong>Private</strong> or <strong>Shared</strong>.</li>
+<li>To let other people add places, click <strong>Invite to edit</strong>, then <strong>Get a link</strong>, and click <strong>COPY THE LINK</strong> to copy the link. You can also turn on <strong>Let others edit your list</strong> under <strong>Edit Options</strong>.</li>
+</ol>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Good to know</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Delete a list</td>
+<td>Open the list, click <strong>More</strong>, then <strong>Delete list</strong></td>
+</tr>
+<tr>
+<td>Starred places</td>
+<td>The <strong>Starred places</strong> list cannot be shared</td>
+</tr>
+<tr>
+<td>Icons</td>
+<td>The icons on the default lists cannot be changed</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="share-send-to-your-phone-and-print">Share, send to your phone, and print</h2>
+<h3 id="share-a-place-or-a-map">Share a place or a map</h3>
+<ol>
+<li>Open a place card and click <strong>Share</strong>, or right-click the map and choose <strong>Share this location</strong>.</li>
+<li>In the dialog, choose how to share. Figure 10 shows the choices.</li>
+<li>Click <strong>Copy Link</strong> to copy the link, or choose <strong>WhatsApp</strong> or <strong>Gmail</strong> to send it in that app.</li>
+</ol>
+<figure><img src="images/10-share-dialog.png" alt="The Share dialog with a link preview and the buttons Copy Link, WhatsApp, Gmail, and Embed a map" width="800" height="500" loading="lazy"><figcaption>Figure 10. The Share dialog. Note: the link begins with maps.app.goo.gl. The apps offered can vary by account and region. Map data ©2026 Google.</figcaption></figure>
+
+<p>To put a map on your own web page, click <strong>Embed a map</strong>, then <strong>Copy HTML</strong>, and paste the code into your page. You can also reach these options by clicking <strong>Menu</strong> and then <strong>Share or embed map</strong>.</p>
+<p>A map that has saved locations, a measured distance, or a map image cannot be shared.</p>
+<h3 id="send-directions-to-your-phone">Send directions to your phone</h3>
+<ol>
+<li>Get directions as described earlier.</li>
+<li>Click <strong>Send directions to</strong> your phone. The button names the type of phone linked to your Google account.</li>
+<li>On your phone, tap the notification to open the route in the Google Maps app.</li>
+</ol>
+<p>You must be signed in on the computer and on the phone, with the same Google account. Click <strong>Copy link</strong> instead if you want to paste the route into a message.</p>
+<h3 id="print">Print</h3>
+<ol>
+<li>Right-click the map and choose <strong>Print</strong>.</li>
+<li>Choose <strong>Print including maps</strong> or <strong>Print text only</strong>.</li>
+<li>Follow the on-screen prompts to choose a printer and print.</li>
+</ol>
+<p>The two print choices are described on the Google Maps Help page. They were not captured in the screenshots for this guide, so check the labels on your screen.</p>
+<h2 id="privacy-and-your-history">Privacy and your history</h2>
+<p>When you are signed in, Google Maps can keep a record of the places you search for and view. You can review and delete that record at any time.</p>
+<h3 id="review-and-delete-your-maps-history">Review and delete your Maps history</h3>
+<ol>
+<li>Click <strong>Menu</strong>, then <strong>Maps history</strong>.</li>
+<li>To remove one entry, click <strong>Remove</strong> beside it.</li>
+<li>To remove many entries, click <strong>Delete</strong>, then choose <strong>Delete today</strong>, <strong>Delete custom range</strong>, or <strong>Delete all time</strong>.</li>
+<li>For a custom range, enter the start and end dates, click <strong>Next</strong>, and then click <strong>Delete</strong>.</li>
+</ol>
+<p>To delete a single place, open <strong>Your Maps history</strong> and click <strong>Delete</strong> beside the place under <strong>Recent Maps history</strong>.</p>
+<p>Deleting Maps history does not delete your Timeline visits, your saved lists, or your reviews and photos.</p>
+<h3 id="what-you-cannot-do-on-a-computer">What you cannot do on a computer</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>On a computer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Timeline</strong></td>
+<td>Not available. To turn it off or delete all of it, use My Google Activity. To delete only part of it, use the Google Maps app on your phone</td>
+</tr>
+<tr>
+<td>Start location sharing</td>
+<td>Not available. You can start sharing only in the mobile app</td>
+</tr>
+<tr>
+<td>Stop location sharing</td>
+<td>Go to myaccount.google.com/locationsharing and click <strong>Stop</strong> beside the person</td>
+</tr>
+</tbody>
+</table></div>
+<p>The <strong>Recents</strong> item in the left rail stays grey until you have viewed some places. This is normal.</p>
+<h2 id="troubleshooting-and-faq">Troubleshooting and FAQ</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>What to try</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A travel mode is greyed out</td>
+<td>The mode is not available for that trip. For example, <strong>Flights</strong> is greyed out when there is no flight route. Choose another mode</td>
+</tr>
+<tr>
+<td>I cannot add a stop</td>
+<td>Stops are not available for <strong>Transit</strong> or <strong>Flights</strong>. Switch to <strong>Driving</strong>, <strong>Walking</strong>, or <strong>Cycle</strong>. The limit is 9 stops, including the final one</td>
+</tr>
+<tr>
+<td>I cannot set a departure time with several stops</td>
+<td><strong>Depart at</strong> and <strong>Arrive by</strong> work only for trips with one destination. Remove the extra stops first</td>
+</tr>
+<tr>
+<td>The <strong>Recents</strong> item is grey</td>
+<td>It becomes available after you view some places</td>
+</tr>
+<tr>
+<td>A layer does not appear</td>
+<td>Some layers are not available in every area or at every zoom level. Zoom in or out, or move to a different area</td>
+</tr>
+<tr>
+<td>I cannot share my map</td>
+<td>A map with saved locations, a measured distance, or a map image cannot be shared. Share a single place instead</td>
+</tr>
+<tr>
+<td>I cannot find Timeline or start location sharing</td>
+<td>Both are mobile features. Use the Google Maps app on your phone</td>
+</tr>
+<tr>
+<td>I cannot save a place</td>
+<td>Check that you are signed in to your Google account</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="frequently-asked-questions">Frequently asked questions</h3>
+<p><strong>Can I get turn-by-turn voice navigation on a computer?</strong> No. On a computer, Google Maps shows the route and the step-by-step directions. To navigate as you travel, send the route to your phone.</p>
+<p><strong>Do I need an account?</strong> No. You can search, get directions, and change the map without signing in. You need an account to save places, view your history, and send directions to your phone.</p>
+<p><strong>How do I look at a map in satellite view?</strong> Click the layers button in the bottom-left corner. See "Change the map."</p>
+<p><strong>Why does my screen look different from the figures?</strong> Google updates Maps often, and some features differ by region and account. The figures in this guide were captured in October 2026.</p>
+<h2 id="quick-start-card-and-sources">Quick-start card and sources</h2>
+<h3 id="quick-start-card">Quick-start card</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>I want to</th>
+<th>Do this</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Find a place</td>
+<td>Type it in the search box and press Enter, then click the result</td>
+</tr>
+<tr>
+<td>Get directions</td>
+<td>Click <strong>Directions</strong>, enter a start and destination, then pick a travel mode and a route</td>
+</tr>
+<tr>
+<td>Avoid tolls or highways</td>
+<td>After you get directions, click <strong>Options</strong> and check <strong>Tolls</strong> or <strong>Highways</strong> under <strong>Avoid</strong></td>
+</tr>
+<tr>
+<td>Switch to satellite</td>
+<td>Click the layers button in the bottom-left corner</td>
+</tr>
+<tr>
+<td>Show traffic or transit</td>
+<td>Hover over the layers button and click <strong>Traffic</strong> or <strong>Transit</strong></td>
+</tr>
+<tr>
+<td>See a street</td>
+<td>Open <strong>Map details</strong>, click <strong>Street View</strong>, and click a blue line</td>
+</tr>
+<tr>
+<td>Measure a distance</td>
+<td>Right-click the map, choose <strong>Measure distance</strong>, and click each point</td>
+</tr>
+<tr>
+<td>Save a place</td>
+<td>Open its card, click <strong>Save</strong>, and choose a list</td>
+</tr>
+<tr>
+<td>Share a place</td>
+<td>Open its card, click <strong>Share</strong>, and click <strong>Copy Link</strong></td>
+</tr>
+<tr>
+<td>Send a route to my phone</td>
+<td>After you get directions, click <strong>Send directions to</strong> your phone</td>
+</tr>
+<tr>
+<td>Delete my history</td>
+<td>Click <strong>Menu</strong>, then <strong>Maps history</strong>, then <strong>Delete</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="sources">Sources</h3>
+<p>This guide was written from direct use of Google Maps in a desktop web browser in October 2026, checked against these Google Maps Help pages:</p>
+<ul>
+<li><a href="https://support.google.com/maps/answer/3092445?hl=en&amp;co=GENIE.Platform%3DDesktop">Search locations on Google Maps</a></li>
+<li><a href="https://support.google.com/maps/answer/144339?hl=en&amp;co=GENIE.Platform%3DDesktop">Get directions and show routes in Google Maps</a></li>
+<li><a href="https://support.google.com/maps/answer/3092439?hl=en">Use layers to find places, traffic, terrain, biking, and transit</a></li>
+<li><a href="https://support.google.com/maps/answer/3093484?hl=en&amp;co=GENIE.Platform%3DDesktop">Use Street View in Google Maps</a></li>
+<li><a href="https://support.google.com/maps/answer/1628031?hl=en&amp;co=GENIE.Platform%3DDesktop">Measure distance between points</a></li>
+<li><a href="https://support.google.com/maps/answer/7280933?hl=en&amp;co=GENIE.Platform%3DDesktop">Create a list of places</a></li>
+<li><a href="https://support.google.com/maps/answer/3184808?hl=en&amp;co=GENIE.Platform%3DDesktop">Save favorite places</a></li>
+<li><a href="https://support.google.com/maps/answer/7101463?hl=en&amp;co=GENIE.Platform%3DDesktop">Share, send, or print directions from Google Maps</a></li>
+<li><a href="https://support.google.com/maps/answer/3137804?hl=en&amp;co=GENIE.Platform%3DDesktop">Manage your Maps history</a></li>
+</ul>
+<p><em>Map data ©2026 Google. Screenshots were captured by the author and edited only to hide personal details. Google Maps is a trademark of Google LLC. This guide is an independent portfolio sample and is not affiliated with or endorsed by Google.</em></p>
+</article>
+<footer>
+<p>This is an independent portfolio sample. It is not affiliated with or endorsed by Google. Written and screenshotted by Kyle Bush. <a href="https://kylebushwriting.com/">Back to portfolio</a></p>
+</footer>
+</main>
+</body>
+</html>
