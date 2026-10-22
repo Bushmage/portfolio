@@ -156,6 +156,8 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:co
 .card ul li{display:flex;gap:10px}
 .card ul li::before{content:"✓";color:var(--blue);font-weight:800}
 @media (max-width:900px){.grid3{grid-template-columns:1fr}}
+.quotes-grid{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));max-width:760px}
+.quotes-grid:has(> :nth-child(3)){max-width:none}
 
 /* work */
 .tabs{display:inline-flex;gap:4px;padding:4px;border-radius:10px;background:var(--surface);border:1px solid var(--line);margin-bottom:28px;flex-wrap:wrap}
@@ -429,18 +431,10 @@ footer a{text-decoration:none;font-weight:600}
 <section class="sec" id="referrals">
   <div class="wrap">
     <div class="sec-head"><span class="eyebrow">Referrals</span><h2>What colleagues say</h2></div>
-    <div class="grid3">
+    <div class="grid3 quotes-grid">
       <figure class="card quote" style="margin:0">
         <blockquote>Kyle made our classroom a really comfortable experience. I was unsure if my attendance was going to be helpful to me, and not only did he explain the system administration concepts well but he made me feel assured I wasn&#39;t going to be left behind. I knew very quickly I had misjudged the class.</blockquote>
         <figcaption class="who"><b>Jennifer</b><span>Client administrator</span></figcaption>
-      </figure>
-      <figure class="card quote" style="margin:0">
-        <blockquote>Add a quote from a client, trainee, or stakeholder here, ideally about a go-live, launch, or training rollout.</blockquote>
-        <figcaption class="who"><span class="ph">Placeholder</span><b>Name</b><span>Title, Company</span></figcaption>
-      </figure>
-      <figure class="card quote" style="margin:0">
-        <blockquote>Add a quote from an engineer or SME you worked with, about how your docs made their work easier.</blockquote>
-        <figcaption class="who"><span class="ph">Placeholder</span><b>Name</b><span>Title, Company</span></figcaption>
       </figure>
     </div>
   </div>
