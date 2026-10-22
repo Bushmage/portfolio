@@ -227,7 +227,7 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:co
 .edu-block{display:grid;gap:16px;margin-top:24px}
 .edu-h{font-size:clamp(1.4rem,2.7vw,1.9rem)}
 .edu-card{padding:22px 26px;box-shadow:none;background:var(--bg);gap:12px}
-.edu-grid{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,.75fr) minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:stretch}
+.edu-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:stretch}
 .cert-list{margin:0;padding:0;list-style:none;display:grid;gap:12px}
 .card .cert-list li{display:flex;align-items:center;gap:12px}
 .cert-list li > div{display:grid;gap:2px;min-width:0}
@@ -248,7 +248,6 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:co
 .degrees .school{color:var(--muted);font-size:.85rem;line-height:1.4}
 .edu-grid .edu-logo{width:56px;height:62px}
 .edu-grid .edu-logo img{height:40px}
-@media (max-width:1100px){.edu-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:640px){.edu-grid{grid-template-columns:1fr}}
 .edu{display:flex;align-items:center;gap:16px}
 .edu > div{display:grid;gap:4px;min-width:0}
