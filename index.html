@@ -163,8 +163,9 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:co
 .tabs{display:inline-flex;gap:4px;padding:4px;border-radius:10px;background:var(--surface);border:1px solid var(--line);margin-bottom:28px;flex-wrap:wrap}
 .tabs button{border:0;background:transparent;color:var(--muted);font:700 .9rem var(--font);padding:9px 16px;border-radius:7px;cursor:pointer}
 .tabs button[aria-pressed="true"]{background:var(--blue-soft);color:var(--blue)}
-.work{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;align-items:start}
-.proj{position:relative;overflow:hidden;background:var(--surface);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:30px;display:grid;gap:14px;align-content:start;min-width:0}
+.work{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.proj{position:relative;overflow:hidden;background:var(--surface);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:30px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.proj > .more, .proj > .link-stack{margin-top:auto;align-self:flex-start;position:relative}
 .proj::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 96% 4%,var(--glow,transparent),transparent 38%)}
 .proj.ag{--glow:color-mix(in srgb,var(--aqua) 16%,transparent)}
 .proj.vg{--glow:color-mix(in srgb,var(--violet) 16%,transparent)}
