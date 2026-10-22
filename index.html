@@ -190,6 +190,7 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:co
 .course-meta{color:var(--muted);font-size:.8rem;font-weight:600;margin-top:4px}
 .course-go{color:var(--blue);font-size:.85rem;font-weight:700}
 .proj-links{display:flex;gap:20px;flex-wrap:wrap;position:relative}
+.link-stack{display:grid;gap:6px;justify-items:start;position:relative}
 @media (max-width:1000px){.courses{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:520px){.courses{grid-template-columns:1fr}}
 
@@ -405,7 +406,8 @@ footer a{text-decoration:none;font-weight:600}
         <p>I created a tool that extracts structured patient data from a note file primarily to learn how to manage and update a code project in GitHub, and to also produce the developer documentation associated with it.</p>
         <p class="docs"><b>3 documents:</b> README, CLI reference, user guide</p>
         <div class="tags"><span class="tag">Node.js</span><span class="tag">CLI reference</span><span class="tag">GitHub</span></div>
-        <a class="more" href="https://github.com/Bushmage/mednotate/blob/main/docs/user-guide.md" target="_blank" rel="noopener">View the developer documentation →</a>
+        <div class="link-stack"><a class="more" href="https://github.com/Bushmage/mednotate/blob/main/docs/user-guide.md" target="_blank" rel="noopener">View the user guide →</a>
+        <a class="more" href="https://github.com/Bushmage/mednotate/blob/main/docs/cli-reference.md" target="_blank" rel="noopener">View the developer documentation →</a></div>
       </article>
       <article class="proj vg" data-t="tw">
         <div class="proj-top"><span class="cat">Developer docs</span></div>
