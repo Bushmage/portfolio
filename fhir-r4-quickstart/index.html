@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FHIR R4 API Quickstart: Patient and Observation Resources | Kyle Bush</title>
+<meta name="description" content="A hands-on quickstart for the FHIR R4 REST API: read, search, create, update, and delete Patient and Observation resources with curl. A technical writing sample by Kyle Bush.">
+<meta name="author" content="Kyle Bush">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://kylebushwriting.com/fhir-r4-quickstart/">
+<meta name="theme-color" content="#2b7de9">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FHIR R4 API Quickstart: Patient and Observation Resources">
+<meta property="og:description" content="A hands-on quickstart for the FHIR R4 REST API: read, search, create, update, and delete Patient and Observation resources with curl. A technical writing sample by Kyle Bush.">
+<meta property="og:url" content="https://kylebushwriting.com/fhir-r4-quickstart/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232b7de9'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+:root{
+  --bg:#f2f8ff; --surface:#ffffff; --surface-2:#eaf3ff;
+  --navy:#0e2a52; --ink:#1a3358; --muted:#58698a; --line:#0e2a521c;
+  --blue:#2b7de9; --blue-soft:#e2efff;
+  --font:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --shadow:0 18px 48px #1a4a8a14;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#0b1324; --surface:#121c31; --surface-2:#16233d;
+  --navy:#eef3ff; --ink:#dbe4f5; --muted:#9aa8c0; --line:#ffffff1c;
+  --blue:#5b93ff; --blue-soft:#1b2c4f; --shadow:0 18px 48px #00000059; color-scheme:dark}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 16.5px/1.7 var(--font);margin:0}
+a{color:var(--blue)}
+a:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:4px}
+.wrap{max-width:820px;margin:0 auto;padding:0 16px}
+.top{padding:18px 0;border-bottom:1px solid var(--line)}
+.top a{font-weight:600;text-decoration:none}
+header.doc{padding:44px 0 8px}
+.pill{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);background:var(--blue-soft);border:1px solid var(--line);padding:6px 12px;border-radius:999px}
+h1{color:var(--navy);font-size:clamp(2rem,5vw,3rem);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin:16px 0 10px}
+.by{color:var(--muted);margin:0 0 8px}
+article{background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:8px 28px 36px;margin:20px 0 48px}
+h2,h3{color:var(--navy);line-height:1.2;letter-spacing:-.02em}
+h2{font-size:1.65rem;margin:2.2em 0 .5em;padding-top:.4em;border-top:1px solid var(--line)}
+article>h2:first-child{border-top:0;margin-top:1.2em}
+h3{font-size:1.2rem;margin:1.8em 0 .4em}
+li{margin:.3em 0}
+code{background:var(--surface-2);padding:1px 6px;border-radius:6px;font-size:.92em}
+pre{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;overflow-x:auto;font-size:.86rem;line-height:1.5;margin:1.2em 0}
+pre code{background:none;padding:0;font-size:inherit}
+p code,li code,td code{overflow-wrap:anywhere}
+figure{margin:1.6em 0}
+figure img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow)}
+figcaption{color:var(--muted);font-size:.88rem;line-height:1.5;margin-top:.6em}
+.tw{overflow-x:auto;margin:1.2em 0}
+table{border-collapse:collapse;width:100%;font-size:.95rem}
+th,td{text-align:left;vertical-align:top;padding:9px 12px;border:1px solid var(--line)}
+th{background:var(--surface-2);color:var(--navy)}
+footer{color:var(--muted);font-size:.88rem;padding-bottom:40px}
+@media (max-width:560px){article{padding:4px 18px 28px;border-radius:14px}}
+</style>
+</head>
+<body>
+<div class="top"><div class="wrap"><a href="https://kylebushwriting.com/#portfolio">&larr; Kyle Bush, Technical Writer</a></div></div>
+<main class="wrap">
+<header class="doc">
+<span class="pill">Technical writing sample &middot; Developer documentation</span>
+<h1>FHIR R4 API Quickstart: Patient and Observation Resources</h1>
+<p class="by">By Kyle Bush &middot; October 2026</p>
+</header>
+<article>
+<h2>Overview</h2>
+<p>FHIR (Fast Healthcare Interoperability Resources) R4 is a REST-based standard for exchanging health data as JSON or XML resources, and this guide shows you how to read, search, create, update, and delete Patient and Observation resources with plain HTTP requests.</p>
+<p>By the end you will be able to:</p>
+<ul>
+<li>Retrieve a patient by ID and search by name, birth date, and gender.</li>
+<li>Create a patient and record a heart-rate Observation using standard LOINC and UCUM codes.</li>
+<li>Read an OperationOutcome to diagnose a failed request.</li>
+</ul>
+<p>This guide is written for developers who know HTTP and JSON. No healthcare background is required. The examples use curl against a public test server, and the same requests work against any FHIR R4 server, such as a vendor sandbox, once you add that server's authorization header.</p>
+<h2>Before you begin</h2>
+<p>You need curl and an internet connection. No account or API key is required for the public test server.</p>
+<ul>
+<li><strong>Tool:</strong> curl 7.x or later. Check with <code>curl --version</code>. Postman works too; the requests translate directly.</li>
+<li><strong>Test server:</strong> the public HAPI FHIR R4 server at <code>https://hapi.fhir.org/baseR4</code>.</li>
+<li><strong>Data rule:</strong> the test server is open to everyone, and its contents can change or be removed at any time. Never submit real patient information. Use fictional names only.</li>
+</ul>
+<p>Set the base URL once so the examples stay short.</p>
+<pre><code class="language-bash">export FHIR_BASE=https://hapi.fhir.org/baseR4
+</code></pre>
+<p>On Windows PowerShell, use <code>$env:FHIR_BASE = "https://hapi.fhir.org/baseR4"</code> and run <code>curl.exe</code> instead of <code>curl</code>.</p>
+<p>Confirm the server is reachable and speaks R4 by requesting its capability statement:</p>
+<pre><code class="language-bash">curl -s -H &quot;Accept: application/fhir+json&quot; &quot;$FHIR_BASE/metadata&quot; | grep -o '&quot;fhirVersion&quot; *: *&quot;[^&quot;]*&quot;'
+</code></pre>
+<p>A working connection prints a line like <code>"fhirVersion": "4.0.1"</code>. FHIR R4 is version 4.0.1.</p>
+<h2>Core concepts</h2>
+<p>Every FHIR request maps one of five REST interactions onto a resource type such as Patient or Observation.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Interaction</th>
+<th>Request</th>
+<th>Success status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Read</td>
+<td><code>GET [base]/Patient/{id}</code></td>
+<td>200 OK</td>
+</tr>
+<tr>
+<td>Search</td>
+<td><code>GET [base]/Patient?{parameters}</code></td>
+<td>200 OK, returns a Bundle</td>
+</tr>
+<tr>
+<td>Create</td>
+<td><code>POST [base]/Patient</code></td>
+<td>201 Created</td>
+</tr>
+<tr>
+<td>Update</td>
+<td><code>PUT [base]/Patient/{id}</code></td>
+<td>200 OK</td>
+</tr>
+<tr>
+<td>Delete</td>
+<td><code>DELETE [base]/Patient/{id}</code></td>
+<td>200 OK or 204 No Content</td>
+</tr>
+</tbody>
+</table></div>
+<p>Four terms appear throughout this guide:</p>
+<ul>
+<li><strong>Resource:</strong> a JSON object whose <code>resourceType</code> field names its kind, such as <code>Patient</code>. Every stored resource has a server-assigned <code>id</code>.</li>
+<li><strong>Bundle:</strong> a container resource. Search results come back as a Bundle of type <code>searchset</code>, with one <code>entry</code> per match.</li>
+<li><strong>Reference:</strong> a pointer from one resource to another, written as <code>{"reference": "Patient/4523"}</code>.</li>
+<li><strong>Coding:</strong> a code plus the code system that defines it, for example LOINC code <code>8867-4</code> for heart rate.</li>
+</ul>
+<p>Send <code>Accept: application/fhir+json</code> on every request so the server returns JSON. On requests that carry a body (create and update), also send <code>Content-Type: application/fhir+json</code>.</p>
+<p>In FHIR JSON, elements that can repeat, such as <code>name</code> and <code>given</code>, are always arrays, even when they hold one value.</p>
+<h2>Task 1: Read a Patient by ID</h2>
+<p>A read request returns one resource when you know its ID. To find a valid ID on the shared test server, ask for one patient with only the <code>id</code> element, then copy the <code>id</code> from the first entry.</p>
+<pre><code class="language-bash">curl -s -H &quot;Accept: application/fhir+json&quot; &quot;$FHIR_BASE/Patient?_count=1&amp;_elements=id&quot;
+</code></pre>
+<p>Then read that patient. Replace <code>4523</code> with your ID.</p>
+<pre><code class="language-bash">curl -s -H &quot;Accept: application/fhir+json&quot; &quot;$FHIR_BASE/Patient/4523&quot;
+</code></pre>
+<p>The response is the Patient resource (abbreviated here to the most common elements). The server also adds <code>meta.source</code> and a generated <code>text</code> narrative, which are left out here. IDs and timestamps are examples; yours will differ. The behavior in this guide was checked against the HAPI test server on October 23, 2026.</p>
+<pre><code class="language-json">{
+  &quot;resourceType&quot;: &quot;Patient&quot;,
+  &quot;id&quot;: &quot;4523&quot;,
+  &quot;meta&quot;: {
+    &quot;versionId&quot;: &quot;1&quot;,
+    &quot;lastUpdated&quot;: &quot;2026-10-22T12:30:00.000+00:00&quot;
+  },
+  &quot;name&quot;: [
+    { &quot;family&quot;: &quot;Quickstart&quot;, &quot;given&quot;: [&quot;Alex&quot;] }
+  ],
+  &quot;gender&quot;: &quot;other&quot;,
+  &quot;birthDate&quot;: &quot;1990-06-15&quot;
+}
+</code></pre>
+<ul>
+<li><code>meta.versionId</code> increases each time the resource is updated, which lets you detect concurrent edits.</li>
+<li><code>name</code> is an array of HumanName objects, and each holds a <code>family</code> string and a <code>given</code> array.</li>
+<li><code>birthDate</code> uses the format <code>YYYY-MM-DD</code>. Servers may omit any element that has no value.</li>
+</ul>
+<p>If the ID does not exist, the server returns status 404 and an OperationOutcome describing the problem. See the troubleshooting section for how to read it.</p>
+<h2>Task 2: Search for patients</h2>
+<p>A search request filters a resource type with query parameters and returns the matches in a Bundle. This example finds up to five female patients with the family name Smith. Quote the URL so your shell does not treat <code>&amp;</code> as a command separator.</p>
+<pre><code class="language-bash">curl -s -H &quot;Accept: application/fhir+json&quot; \
+  &quot;$FHIR_BASE/Patient?family=Smith&amp;gender=female&amp;_count=5&quot;
+</code></pre>
+<p>The response is a Bundle (abbreviated):</p>
+<pre><code class="language-json">{
+  &quot;resourceType&quot;: &quot;Bundle&quot;,
+  &quot;type&quot;: &quot;searchset&quot;,
+  &quot;link&quot;: [
+    { &quot;relation&quot;: &quot;self&quot;, &quot;url&quot;: &quot;https://hapi.fhir.org/baseR4/Patient?family=Smith&amp;gender=female&amp;_count=5&quot; },
+    { &quot;relation&quot;: &quot;next&quot;, &quot;url&quot;: &quot;https://hapi.fhir.org/baseR4?_getpages=...&amp;_getpagesoffset=5&amp;_count=5&quot; }
+  ],
+  &quot;entry&quot;: [
+    {
+      &quot;fullUrl&quot;: &quot;https://hapi.fhir.org/baseR4/Patient/4523&quot;,
+      &quot;resource&quot;: { &quot;resourceType&quot;: &quot;Patient&quot;, &quot;id&quot;: &quot;4523&quot; },
+      &quot;search&quot;: { &quot;mode&quot;: &quot;match&quot; }
+    }
+  ]
+}
+</code></pre>
+<p>Each match is in <code>entry[].resource</code>. A search with no matches still returns status 200 with a Bundle that has no <code>entry</code> array, so check for that rather than expecting an error.</p>
+<h3>Common Patient search parameters</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+<th>Matches</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>family</code></td>
+<td><code>family=Smith</code></td>
+<td>Family names that start with the value, ignoring case</td>
+</tr>
+<tr>
+<td><code>given</code></td>
+<td><code>given=Alex</code></td>
+<td>Given names that start with the value</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>name=smith</code></td>
+<td>Any part of any name</td>
+</tr>
+<tr>
+<td><code>gender</code></td>
+<td><code>gender=female</code></td>
+<td>Exact code: male, female, other, or unknown</td>
+</tr>
+<tr>
+<td><code>birthdate</code></td>
+<td><code>birthdate=ge1980-01-01</code></td>
+<td>Dates, with prefixes <code>eq</code>, <code>ne</code>, <code>gt</code>, <code>lt</code>, <code>ge</code>, <code>le</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>Repeat a parameter to set a range, for example <code>birthdate=ge1980-01-01&amp;birthdate=lt1990-01-01</code>. To search by a business identifier, pass the code system and value separated by a vertical bar, such as <code>identifier=http://hospital.example.org/mrn%7C12345</code>. The <code>%7C</code> is a URL-encoded vertical bar.</p>
+<h3>Paging and trimming results</h3>
+<ul>
+<li><strong>Page size:</strong> <code>_count=5</code> asks for five results per page. Servers may enforce their own maximum.</li>
+<li><strong>Next page:</strong> follow the <code>url</code> of the <code>link</code> whose <code>relation</code> is <code>next</code>. Stop when there is no <code>next</code> link. Do not build page URLs yourself.</li>
+<li><strong>Smaller responses:</strong> <code>_summary=true</code> returns only each resource's summary elements, and <code>_elements=id,name</code> returns only the elements you list, plus <code>resourceType</code> and <code>meta</code>.</li>
+<li><strong>Order:</strong> <code>_sort=family</code> sorts ascending, and <code>_sort=-birthdate</code> sorts descending.</li>
+</ul>
+<h2>Task 3: Create a Patient</h2>
+<p>A create request sends a new resource in the request body, and the server assigns its ID. Save this fictional patient as <code>patient.json</code>. Do not include an <code>id</code>.</p>
+<pre><code class="language-json">{
+  &quot;resourceType&quot;: &quot;Patient&quot;,
+  &quot;name&quot;: [
+    { &quot;use&quot;: &quot;official&quot;, &quot;family&quot;: &quot;Quickstart&quot;, &quot;given&quot;: [&quot;Alex&quot;] }
+  ],
+  &quot;gender&quot;: &quot;other&quot;,
+  &quot;birthDate&quot;: &quot;1990-06-15&quot;
+}
+</code></pre>
+<p>Send it with POST. The <code>-i</code> flag prints the response headers, and <code>Prefer: return=representation</code> asks the server to return the stored resource in the response body.</p>
+<pre><code class="language-bash">curl -s -i -X POST &quot;$FHIR_BASE/Patient&quot; \
+  -H &quot;Content-Type: application/fhir+json&quot; \
+  -H &quot;Accept: application/fhir+json&quot; \
+  -H &quot;Prefer: return=representation&quot; \
+  -d @patient.json
+</code></pre>
+<p>A successful create returns status 201 Created and a <code>Location</code> header with the new resource's URL:</p>
+<pre><code class="language-text">HTTP/1.1 201 Created
+Location: https://hapi.fhir.org/baseR4/Patient/4523/_history/1
+</code></pre>
+<p>The number after <code>Patient/</code> is the new ID. Note it, because the next tasks use it. The body contains your resource plus the server-generated <code>id</code> and <code>meta</code> elements, plus a generated <code>text</code> narrative.</p>
+<p>Two gotchas cause most create failures. A missing <code>Content-Type</code> header returns status 400 on the HAPI test server (the FHIR specification also allows 415). A body whose <code>resourceType</code> does not match the URL, such as an Observation posted to <code>/Patient</code>, returns status 400 on the HAPI test server (other servers may use 422).</p>
+<h2>Task 4: Record and retrieve a heart-rate Observation</h2>
+<p>An Observation stores a single measurement, such as a vital sign, and points to the patient it belongs to. This one records a heart rate of 72 beats per minute. Save it as <code>observation.json</code>, replacing <code>4523</code> with the ID from Task 3.</p>
+<pre><code class="language-json">{
+  &quot;resourceType&quot;: &quot;Observation&quot;,
+  &quot;status&quot;: &quot;final&quot;,
+  &quot;category&quot;: [
+    {
+      &quot;coding&quot;: [
+        {
+          &quot;system&quot;: &quot;http://terminology.hl7.org/CodeSystem/observation-category&quot;,
+          &quot;code&quot;: &quot;vital-signs&quot;,
+          &quot;display&quot;: &quot;Vital Signs&quot;
+        }
+      ]
+    }
+  ],
+  &quot;code&quot;: {
+    &quot;coding&quot;: [
+      { &quot;system&quot;: &quot;http://loinc.org&quot;, &quot;code&quot;: &quot;8867-4&quot;, &quot;display&quot;: &quot;Heart rate&quot; }
+    ]
+  },
+  &quot;subject&quot;: { &quot;reference&quot;: &quot;Patient/4523&quot; },
+  &quot;effectiveDateTime&quot;: &quot;2026-10-22T08:30:00-04:00&quot;,
+  &quot;valueQuantity&quot;: {
+    &quot;value&quot;: 72,
+    &quot;unit&quot;: &quot;beats/minute&quot;,
+    &quot;system&quot;: &quot;http://unitsofmeasure.org&quot;,
+    &quot;code&quot;: &quot;/min&quot;
+  }
+}
+</code></pre>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>status</code></td>
+<td>Required. Where the result stands. <code>final</code> means complete and verified.</td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td>Required. What was measured, here a LOINC code. LOINC defines the codes for lab tests and clinical measurements.</td>
+</tr>
+<tr>
+<td><code>subject</code></td>
+<td>A reference to the patient the measurement belongs to.</td>
+</tr>
+<tr>
+<td><code>effectiveDateTime</code></td>
+<td>When the measurement was taken, with a time zone offset.</td>
+</tr>
+<tr>
+<td><code>valueQuantity</code></td>
+<td>The result: a number plus a unit. The <code>system</code> and <code>code</code> use UCUM, the standard unit code system, and <code>/min</code> means per minute.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Post it the same way as the patient:</p>
+<pre><code class="language-bash">curl -s -i -X POST &quot;$FHIR_BASE/Observation&quot; \
+  -H &quot;Content-Type: application/fhir+json&quot; \
+  -H &quot;Accept: application/fhir+json&quot; \
+  -d @observation.json
+</code></pre>
+<p>A 201 Created response means the Observation is stored. To retrieve the patient's heart-rate readings, newest first, search by subject and code. The <code>%7C</code> separates the code system from the code.</p>
+<pre><code class="language-bash">curl -s -H &quot;Accept: application/fhir+json&quot; \
+  &quot;$FHIR_BASE/Observation?subject=Patient/4523&amp;code=http://loinc.org%7C8867-4&amp;_sort=-date&quot;
+</code></pre>
+<p>The result is a <code>searchset</code> Bundle, like the patient search in Task 2. Each <code>entry[].resource</code> is an Observation. If the Bundle is empty, check that <code>subject</code> uses the exact ID from Task 3.</p>
+<h2>Task 5: Update and delete a resource</h2>
+<p>An update replaces the entire stored resource, so the request body must contain every element you want to keep, plus the <code>id</code>. Any element you leave out is removed. This version of <code>patient.json</code> adds an email address:</p>
+<pre><code class="language-json">{
+  &quot;resourceType&quot;: &quot;Patient&quot;,
+  &quot;id&quot;: &quot;4523&quot;,
+  &quot;name&quot;: [
+    { &quot;use&quot;: &quot;official&quot;, &quot;family&quot;: &quot;Quickstart&quot;, &quot;given&quot;: [&quot;Alex&quot;] }
+  ],
+  &quot;gender&quot;: &quot;other&quot;,
+  &quot;birthDate&quot;: &quot;1990-06-15&quot;,
+  &quot;telecom&quot;: [
+    { &quot;system&quot;: &quot;email&quot;, &quot;value&quot;: &quot;alex.quickstart@example.com&quot; }
+  ]
+}
+</code></pre>
+<pre><code class="language-bash">curl -s -X PUT &quot;$FHIR_BASE/Patient/4523&quot; \
+  -H &quot;Content-Type: application/fhir+json&quot; \
+  -H &quot;Accept: application/fhir+json&quot; \
+  -d @patient.json
+</code></pre>
+<p>A successful update returns status 200, and <code>meta.versionId</code> increases to <code>2</code>. The <code>id</code> in the body must match the <code>id</code> in the URL, or the server rejects the request with status 400. To list every stored version, request <code>GET $FHIR_BASE/Patient/4523/_history</code>.</p>
+<p>To prevent overwriting someone else's change, add the header <code>If-Match: W/"1"</code> with the version you last read. If the stored version is different, the server refuses the update, with status 412 Precondition Failed under the FHIR specification, although the HAPI test server returned 409 Conflict.</p>
+<h3>Delete</h3>
+<p>Remove the Observation first and then the patient, because servers can refuse to delete a resource that other resources still reference, usually with status 409.</p>
+<pre><code class="language-bash">curl -s -i -X DELETE &quot;$FHIR_BASE/Observation/{observation-id}&quot;
+curl -s -i -X DELETE &quot;$FHIR_BASE/Patient/4523&quot;
+</code></pre>
+<p>A successful delete returns status 200 or 204, depending on the server. Reading a deleted resource afterward typically returns status 410 Gone. Because the test server is shared, delete the test data you create when you finish.</p>
+<h2>Errors and troubleshooting</h2>
+<p>When a request fails, a FHIR server returns an HTTP error status and, usually, an OperationOutcome resource that explains what went wrong. Read <code>issue[].diagnostics</code> first. Exact wording varies by server.</p>
+<pre><code class="language-json">{
+  &quot;resourceType&quot;: &quot;OperationOutcome&quot;,
+  &quot;issue&quot;: [
+    {
+      &quot;severity&quot;: &quot;error&quot;,
+      &quot;code&quot;: &quot;processing&quot;,
+      &quot;diagnostics&quot;: &quot;HAPI-2001: Resource Patient/does-not-exist is not known&quot;
+    }
+  ]
+}
+</code></pre>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Usual cause</th>
+<th>What to check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>400</td>
+<td>Malformed JSON, an unknown search parameter, or an ID mismatch on update</td>
+<td>Validate the JSON and check parameter spelling</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Missing or expired credentials</td>
+<td>Add the <code>Authorization</code> header (not needed on the public test server)</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Valid credentials without permission</td>
+<td>Check the scopes or roles granted to your client</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Unknown resource type, ID, or base URL</td>
+<td>Check the path and the ID</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Version conflict or a resource that is still referenced</td>
+<td>Re-read the resource, or delete the referencing resources first</td>
+</tr>
+<tr>
+<td>410</td>
+<td>The resource was deleted</td>
+<td>Search for it again or create a new one</td>
+</tr>
+<tr>
+<td>412</td>
+<td>The <code>If-Match</code> version does not match</td>
+<td>Re-read the resource and retry with the new version</td>
+</tr>
+<tr>
+<td>415</td>
+<td>Unsupported media type</td>
+<td>Send <code>Content-Type: application/fhir+json</code></td>
+</tr>
+<tr>
+<td>422</td>
+<td>The body is valid JSON but fails server validation</td>
+<td>Read each <code>issue[].diagnostics</code> for the failing element</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Common problems</h3>
+<ul>
+<li><strong>You get HTML instead of JSON.</strong> Add the <code>Accept: application/fhir+json</code> header, or append <code>_format=json</code> to the URL.</li>
+<li><strong>curl reports a bad URL, or only part of your search runs.</strong> The URL has an unquoted <code>&amp;</code>. Wrap the whole URL in double quotes.</li>
+<li><strong>A search returns an empty Bundle.</strong> Search values are matched against stored data, so check spelling and the exact code values, such as <code>female</code> rather than <code>F</code>.</li>
+<li><strong>A create works but the next read returns 404.</strong> The shared test server can be reset. Create the resource again.</li>
+</ul>
+<h2>Quick reference and next steps</h2>
+<p>Production FHIR servers add authorization, most often SMART on FHIR, which is OAuth 2.0 with healthcare scopes, so the next step is learning how your target server issues access tokens.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Request</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Check server version</td>
+<td><code>GET [base]/metadata</code></td>
+</tr>
+<tr>
+<td>Read a patient</td>
+<td><code>GET [base]/Patient/{id}</code></td>
+</tr>
+<tr>
+<td>Search patients</td>
+<td><code>GET [base]/Patient?family=Smith&amp;_count=5</code></td>
+</tr>
+<tr>
+<td>Create a patient</td>
+<td><code>POST [base]/Patient</code> with a JSON body</td>
+</tr>
+<tr>
+<td>Record a vital sign</td>
+<td><code>POST [base]/Observation</code> with a JSON body</td>
+</tr>
+<tr>
+<td>List a patient's heart rates</td>
+<td><code>GET [base]/Observation?subject=Patient/{id}&amp;code=http://loinc.org%7C8867-4&amp;_sort=-date</code></td>
+</tr>
+<tr>
+<td>Update</td>
+<td><code>PUT [base]/Patient/{id}</code> with the full resource</td>
+</tr>
+<tr>
+<td>Delete</td>
+<td><code>DELETE [base]/Patient/{id}</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>Other topics worth exploring: transaction Bundles for saving several resources in one request, the <code>_include</code> search parameter for returning related resources together, and implementation guides such as US Core that add profiles for U.S. healthcare data.</p>
+<h3>Sources</h3>
+<ul>
+<li><a href="https://hl7.org/fhir/R4/">HL7 FHIR R4 specification</a></li>
+<li><a href="https://hl7.org/fhir/R4/http.html">RESTful API</a></li>
+<li><a href="https://hl7.org/fhir/R4/search.html">Search</a></li>
+<li><a href="https://hl7.org/fhir/R4/patient.html">Patient resource</a></li>
+<li><a href="https://hl7.org/fhir/R4/observation.html">Observation resource</a></li>
+<li><a href="https://hl7.org/fhir/R4/operationoutcome.html">OperationOutcome resource</a></li>
+<li><a href="https://hapi.fhir.org/">HAPI FHIR public test server</a></li>
+<li><a href="https://loinc.org/">LOINC</a></li>
+<li><a href="https://ucum.org/">UCUM</a></li>
+</ul>
+</article>
+<footer>
+<p>This is an independent portfolio sample. It is not affiliated with or endorsed by HL7 or the HAPI project. Written by Kyle Bush, with every request checked against the HAPI public test server. <a href="https://kylebushwriting.com/">Back to portfolio</a></p>
+</footer>
+</main>
+</body>
+</html>
