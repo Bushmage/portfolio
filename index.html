@@ -176,6 +176,7 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:co
 .tabs button[aria-pressed="true"]{background:var(--blue-soft);color:var(--blue)}
 .work{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
 .proj{position:relative;overflow:hidden;background:var(--surface);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:30px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.proj > .note-conf{margin-top:auto;font-size:.88rem;font-style:italic;color:var(--muted);position:relative}
 .proj > .more, .proj > .link-stack{margin-top:auto;align-self:flex-start;position:relative}
 .proj::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 96% 4%,var(--glow,transparent),transparent 38%)}
 .proj.ag{--glow:color-mix(in srgb,var(--aqua) 16%,transparent)}
@@ -426,6 +427,14 @@ footer a{text-decoration:none;font-weight:600}
           <a class="course" href="https://bushmage.github.io/courses/ai-tools/index.html" target="_blank" rel="noopener"><span class="course-code">TC-104</span><b>Using AI Tools Safely at Work</b><span class="course-desc">Use only approved AI tools, know what never to enter, check the output, and report mistakes right away.</span><span class="course-meta">~15 minutes · 7 lessons</span><span class="course-go">Launch course ↗</span></a>
         </div>
         <div class="tags"><span class="tag">Rise 360</span><span class="tag">HIPAA</span><span class="tag">Scenario-based learning</span><span class="tag">Microlearning</span></div>
+      </article>
+      <article class="proj vg" data-t="id">
+        <div class="proj-top"><span class="cat">Compliance training</span></div>
+        <h3>EMDAN FDA Compliance Training</h3>
+        <p>I designed and delivered compliance training for the product stakeholders who operate or work on EMDAN, Vocera&#39;s FDA 510(k)-cleared medical device alarm notification software, so their work stayed within FDA requirements.</p>
+        <p class="docs"><b>Instructor-led presentation:</b> device classification, alarms vs. alerts, data flow, access controls, and release process</p>
+        <div class="tags"><span class="tag">FDA Compliance</span><span class="tag">Instructor-Led Training</span><span class="tag">Healthcare IT</span><span class="tag">Medical Devices</span></div>
+        <p class="note-conf">Internal company material. Available to discuss in an interview.</p>
       </article>
       <article class="proj og" data-t="tw">
         <div class="proj-top"><span class="cat">End-user documentation</span></div>
